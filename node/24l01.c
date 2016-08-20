@@ -107,10 +107,10 @@ void rf_enter_rx(void) {
 }
 
 uint8_t rf_read_payload(uint8_t *buf) {
-uint8_t len, i;
+uint8_t len=0, i;
 	
 	len = rf_read_rxlen();
-	if(len < 32) {
+	if(len <= 32) {
 		nss_low();
 		spi_rw_byte(CMD_RX_PAYLOAD);
 		for(i=0; i<len; i++) {
@@ -168,7 +168,10 @@ uint8_t *get_rf_buf(void) {
 }
 
 uint8_t get_rf_cnt(void) {
-	return rf_rx_len;
+	if((rf_rx_len>0)) {
+		return rf_rx_len;
+	}
+	return 0;
 }
 
 void rf_isr(void) {
@@ -191,7 +194,7 @@ uint8_t status;
 		rf_max_rt = 1;
 		rf_write_reg(0x07, 0x10);
 	}
-	rf_flush_tx();
+//	rf_flush_tx();
 	rf_flush_rx();	
 	rf_ce_high();			//node stay in rx mode
 }

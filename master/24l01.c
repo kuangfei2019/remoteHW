@@ -107,10 +107,10 @@ void rf_enter_rx(void) {
 }
 
 uint8_t rf_read_payload(uint8_t *buf) {
-uint8_t len, i;
+uint8_t len=0, i;
 	
 	len = rf_read_rxlen();
-	if(len < 32) {
+	if(len <= 32) {
 		nss_low();
 		spi_rw_byte(CMD_RX_PAYLOAD);
 		for(i=0; i<len; i++) {

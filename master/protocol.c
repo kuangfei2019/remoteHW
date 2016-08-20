@@ -16,3 +16,22 @@ uint8_t i;
 	
 	return i;
 }
+
+void send_packet(uint8_t *pbuf, uint8_t len) {
+uint8_t buf[RF_BUF_SIZE];
+	
+	if(len < RF_BUF_SIZE) {
+		buf[0] = 0x11;
+		memcpy(buf+1, pbuf, len);
+		rf_write_payload(buf, len+1);
+	} else {
+		buf[0] = 0x21;
+		memcpy(buf+1, pbuf, RF_BUF_SIZE-1);
+		rf_write_payload(buf, RF_BUF_SIZE);
+		delay(10);
+		len -= (RF_BUF_SIZE-1);
+		buf[0] = 0x22;
+		memcpy(buf+1, pbuf+RF_BUF_SIZE-1, len);
+		rf_write_payload(buf, len+1);
+	}
+}

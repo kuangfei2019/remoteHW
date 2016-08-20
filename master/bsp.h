@@ -4,6 +4,8 @@
 #include 	<iostm8s003f3.h>
 #include	<stdint.h>
 #include	<stdio.h>
+#include	<string.h>
+#include	"protocol.h"
 #include	"24l01.h"
 
 #define		HSI								16000000
@@ -24,6 +26,7 @@ void iwdg_init(void);
 void gpio_init(void);
 void tim1_init(uint16_t ms);
 void tim1_isr(void);
+uint8_t is_t05_arrival(void);
 uint32_t get_systick(void);
 void tim2_init(uint16_t ms);
 void tim2_isr(void);

@@ -1,51 +1,54 @@
 #include	"bsp.h"
-#include	<string.h>
 
-uint8_t net_status;
-uint8_t tx_buf[64];
-uint8_t tx_cnt;
+#define		MASTER_ACTIVE			0x01
+#define		NODE_ACTIVE				0x02
+#define		DEV_ACTIVE				0x04
 
-int main( void ) { 
+static 		uint8_t 					nw_state;
+
+static 		uint8_t 					uart_tx_buf[32];
+
+int main( void ) {
 
 	bsp_init();	
 	led_off();
-	net_status = 0x01;
+	nw_state = MASTER_ACTIVE;
+	
 	while(1) {
-		//如果串口接收到数据则发送，否则发送心跳包
+
 		if(is_uart_received()) {
-			rf_write_payload(get_uart_buf(), get_uart_cnt());
-			delay(100);
-		} else {
+			send_packet(get_uart_buf(), get_uart_cnt());
+			tim1_init(500);
+			is_t05_arrival();
+		}
+		
+		if(is_t05_arrival()) {
+			uint8_t len=0;
+			
+			led_on();
 			rf_write_payload("x", 1);
+			delay(10);
+			
+			if(is_rf_sent()) {
+				nw_state &= ~DEV_ACTIVE;
+				nw_state |= NODE_ACTIVE;
+			}
+			if(is_rf_received()) {
+				nw_state |= (NODE_ACTIVE|DEV_ACTIVE);
+				len = get_rf_cnt();
+				memcpy(uart_tx_buf+1, get_rf_buf(), len);
+			}
+			if(is_rf_mrt()) {
+				nw_state &= ~(NODE_ACTIVE|DEV_ACTIVE);
+			}
+			
+			uart_tx_buf[0] = nw_state;
+			for(uint8_t i=0; i<len+1; i++) {
+				putchar(uart_tx_buf[i]);
+			}
+			
+			led_off();
 		}
-		led_on();
-		delay(2);
-		
-		//通过检查RF中断判断是否为带数据的ack，从而更新网络状态标识
-		if(is_rf_mrt()) {
-			net_status &= ~0x06;
-		}
-		
-		if(is_rf_sent()) {
-			net_status &= ~0x04;
-			net_status |= 0x02;
-		}
-		
-		tx_cnt = 1;
-		if(is_rf_received()) {
-			net_status |= 0x06;
-			tx_cnt = get_rf_cnt();
-			memcpy(tx_buf+1, get_rf_buf(), tx_cnt);
-			tx_cnt += 1;
-		}
-		//如果节点返回数据，则将数据附加在网络状态之后发送到上位机，否则只发送网络状态
-		tx_buf[0] = net_status;
-		for(uint8_t i=0; i<tx_cnt; i++) {
-			putchar(tx_buf[i]);
-		}
-		led_off();
-		
-		delay(1000);
 	}
 }
 

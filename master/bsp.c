@@ -1,5 +1,6 @@
 #include	"bsp.h"
 
+static uint8_t t05_arrival;
 static uint32_t sys_tick;
 static char uart_buf[UART_BUF_SIZE];
 static uint8_t uart_rcv_cnt;
@@ -157,7 +158,16 @@ uint16_t psc;
 
 void tim1_isr(void) {
 	TIM1_SR1 = 0;
+	t05_arrival = 1;
 	sys_tick++;
+}
+
+uint8_t is_t05_arrival(void) {
+	if(t05_arrival) {
+		t05_arrival = 0;
+		return 1;
+	}
+	return 0;
 }
 
 uint32_t get_systick(void) {

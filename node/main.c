@@ -1,32 +1,30 @@
 #include	"bsp.h"
-#include	<string.h>
+
+static uint8_t uart_tx_buf[64];
 
 int main( void ) {
 
-	bsp_init();
-	
+	bsp_init();	
 	led_off();
+	
 	while(1) {
 		if(is_uart_received()) {
 			rf_ack_payload(get_uart_buf(), get_uart_cnt());
 		}
 		
 		if(is_rf_sent()) {
-			led_on();
-			delay(10);
-			led_off();
+			rf_flush_tx();
 		}
 		
 		if(is_rf_received()) {
-			uint8_t *buf = get_rf_buf();
-			for(uint8_t i=0; i<get_rf_cnt(); i++) {
-				putchar(buf[i]);
-			}
+		uint8_t len;			
 			led_on();
-			delay(10);
+			len = read_packet(uart_tx_buf, sizeof(uart_tx_buf));
+			for(uint8_t i=0; i<len; i++) {
+				putchar(uart_tx_buf[i]);
+			}
 			led_off();
 		}
-		delay(100);
 	}
 }
 

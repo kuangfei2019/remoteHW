@@ -1,0 +1,9 @@
+//IAR for STM8 ignore files
+
+*.wsdt
+*.wspos
+*.out
+*.map
+*.o
+*.pb*
+settings/
