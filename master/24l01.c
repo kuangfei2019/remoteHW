@@ -83,7 +83,7 @@ void rf_init(void) {
 	rf_write_reg(0x01, 0x01);	//enable pipe 0 auto ack
 	rf_write_reg(0x02, 0x01);	//enable data pipe 0
 	rf_write_reg(0x03, 0x03);	//5 bytes address
-	rf_write_reg(0x04, 0x3A);	//10 times retransmit, wait 1000us
+	rf_write_reg(0x04, 0x5A);	//10 times retransmit, wait 1000us
 	rf_write_reg(0x05, 0x00);	//set rf channel 0
 	rf_write_reg(0x06, 0x23);	//250kbps 0dbm
 	
@@ -182,19 +182,21 @@ uint8_t status;
 		rf_rx_len = rf_read_payload((uint8_t *)rf_rx_buf);
 		rf_rx_done = 1;
 		rf_write_reg(0x07, 0x40);
+		rf_flush_rx();
 	}
 	
 	if(status & 0x20) {		//tx_ds
 		rf_tx_done = 1;
 		rf_write_reg(0x07, 0x20);
+		rf_flush_tx();
 	}
 	
 	if(status & 0x10) {		//max_rt
 		rf_max_rt = 1;
 		rf_write_reg(0x07, 0x10);
+		rf_flush_tx();
 	}
-	rf_flush_tx();
-	rf_flush_rx();
+	
 	rf_ce_low();
 }
 

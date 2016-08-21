@@ -6,26 +6,20 @@
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$PROJ_DIR$\protocol.c</file>
-      <file>$TOOLKIT_DIR$\inc\c\stdio.h</file>
-      <file>$TOOLKIT_DIR$\inc\iostm8s003f3.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\string.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\node.pbd</file>
-      <file>$PROJ_DIR$\..\master\bsp.h</file>
-      <file>$PROJ_DIR$\..\master\main.c</file>
-      <file>$PROJ_DIR$\..\master\24l01.c</file>
-      <file>$PROJ_DIR$\..\master\protocol.c</file>
       <file>$PROJ_DIR$\24l01.c</file>
       <file>$PROJ_DIR$\main.c</file>
       <file>$PROJ_DIR$\bsp.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\24l01.o</file>
+      <file>$PROJ_DIR$\protocol.c</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\node.pbd</file>
+      <file>$TOOLKIT_DIR$\inc\c\string.h</file>
       <file>$PROJ_DIR$\Debug\Obj\bsp.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\24l01.o</file>
       <file>$PROJ_DIR$\Debug\Obj\main.o</file>
-      <file>$PROJ_DIR$\Debug\Exe\node.out</file>
       <file>$PROJ_DIR$\Debug\List\node.map</file>
       <file>$PROJ_DIR$\bsp.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\node.out</file>
       <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\24l01.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\bsp.o</file>
@@ -46,68 +40,36 @@
       <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
       <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
       <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
-      <file>$PROJ_DIR$\..\master\protocol.h</file>
       <file>$PROJ_DIR$\Debug\Obj\protocol.o</file>
       <file>$PROJ_DIR$\Debug\Obj\protocol.pbi</file>
       <file>$PROJ_DIR$\protocol.h</file>
-      <file>$PROJ_DIR$\..\master\bsp.c</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdio.h</file>
+      <file>$TOOLKIT_DIR$\inc\iostm8s003f3.h</file>
     </outputs>
-    <file>
-      <name>$PROJ_DIR$\protocol.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 42</file>
-        </tool>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 41</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 38 37 2 32 1 39 31 35 4 19 33 5 43 36 34 30 3</file>
-        </tool>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 43 19 2 38 33 31 37 30 34 39 36 3 1 4 35 5 32</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>[ROOT_NODE]</name>
-      <outputs>
-        <tool>
-          <name>ILINK</name>
-          <file> 17 18</file>
-        </tool>
-      </outputs>
-    </file>
     <file>
       <name>$PROJ_DIR$\24l01.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 21</file>
+          <file> 15</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 14</file>
+          <file> 9</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 27</file>
+          <file> 21</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 4 43 36 31 39 33 35 5 37 19 2 1 32 38 30 34 3</file>
+          <file> 8 36 30 25 33 27 29 6 31 12 38 37 26 32 24 28 4</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 32 19 2 38 33 31 37 30 34 39 36 3 1 4 35 5 43</file>
+          <file> 26 12 38 32 27 25 31 24 28 33 30 4 37 8 29 6 36</file>
         </tool>
       </inputs>
     </file>
@@ -116,25 +78,25 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 20</file>
+          <file> 14</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 16</file>
+          <file> 10</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 29</file>
+          <file> 23</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 36 43 31 33 37 5 2 1 32 38 30 3 4 19 34 39 35</file>
+          <file> 26 38 32 31 37 24 4 25 27 6 36 30 8 12 28 33 29</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 19 2 38 33 31 37 30 34 39 36 3 1 4 35 5 32 43</file>
+          <file> 12 38 32 27 25 31 24 28 33 30 4 37 8 29 6 26 36</file>
         </tool>
       </inputs>
     </file>
@@ -143,25 +105,48 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 15</file>
+          <file> 7</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 22</file>
+          <file> 16</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 28</file>
+          <file> 22</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 37 32 2 38 1 30 34 4 33 5 43 39 31 19 36 3 35</file>
+          <file> 31 26 38 32 37 24 28 8 27 6 36 33 25 12 30 4 29</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 19 2 38 33 31 37 30 34 39 36 3 1 4 35 5 32 43</file>
+          <file> 12 38 32 27 25 31 24 28 33 30 4 37 8 29 6 26 36</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\protocol.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 35</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 34</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 32 31 38 26 37 33 25 29 8 12 27 6 36 30 28 24 4</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 36 12 38 32 27 25 31 24 28 33 30 4 37 8 29 6 26</file>
         </tool>
       </inputs>
     </file>
@@ -170,15 +155,24 @@
       <outputs>
         <tool>
           <name>ILINK</name>
-          <file> 18</file>
+          <file> 11</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ILINK</name>
-          <file> 25 26 14 22 16 41 24 23</file>
+          <file> 19 20 9 16 10 34 18 17</file>
         </tool>
       </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 13 11</file>
+        </tool>
+      </outputs>
     </file>
   </configuration>
   <configuration>

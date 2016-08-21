@@ -28,10 +28,24 @@ uint8_t buf[RF_BUF_SIZE];
 		buf[0] = 0x21;
 		memcpy(buf+1, pbuf, RF_BUF_SIZE-1);
 		rf_write_payload(buf, RF_BUF_SIZE);
-		delay(10);
+		
+		for(uint8_t i=0; i<20; i++) {
+			delay(2);
+			if(is_rf_sent()) {
+				break;
+			}
+		}
+		
 		len -= (RF_BUF_SIZE-1);
 		buf[0] = 0x22;
 		memcpy(buf+1, pbuf+RF_BUF_SIZE-1, len);
 		rf_write_payload(buf, len+1);
 	}
+	
+	for(uint8_t i=0; i<20; i++) {
+		delay(2);
+		if(is_rf_sent()) {
+			break;
+		}
+	}	
 }

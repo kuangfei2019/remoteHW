@@ -99,6 +99,10 @@ uint8_t cnt;
 }
 
 void uart_isr(void) {
+	if(uart_received) {
+		uart_received = 0;
+		uart_rcv_cnt = 0;
+	}
 
 	if(UART1_SR_RXNE) {
 		uart_buf[uart_rcv_cnt++] = UART1_DR;

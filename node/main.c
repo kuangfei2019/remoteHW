@@ -1,6 +1,6 @@
 #include	"bsp.h"
 
-static uint8_t uart_tx_buf[64];
+static uint8_t uart_tx_buf[UART_BUF_SIZE];
 
 int main( void ) {
 
@@ -8,16 +8,18 @@ int main( void ) {
 	led_off();
 	
 	while(1) {
+		
 		if(is_uart_received()) {
 			rf_ack_payload(get_uart_buf(), get_uart_cnt());
 		}
 		
 		if(is_rf_sent()) {
-			rf_flush_tx();
+
 		}
 		
 		if(is_rf_received()) {
-		uint8_t len;			
+		uint8_t len;
+			
 			led_on();
 			len = read_packet(uart_tx_buf, sizeof(uart_tx_buf));
 			for(uint8_t i=0; i<len; i++) {

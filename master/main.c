@@ -12,22 +12,27 @@ int main( void ) {
 
 	bsp_init();	
 	led_off();
+	//设置网络状态
 	nw_state = MASTER_ACTIVE;
 	
 	while(1) {
 
+		//如果串口接收到数据立即发送
 		if(is_uart_received()) {
 			send_packet(get_uart_buf(), get_uart_cnt());
-			tim1_init(500);
-			is_t05_arrival();
+			
+			is_rf_sent();
+			is_rf_received();
+			is_rf_mrt();
 		}
 		
+		//定时发送查询指令，读取节点数据，更新网络状态，返回数据至PC
 		if(is_t05_arrival()) {
 			uint8_t len=0;
 			
 			led_on();
 			rf_write_payload("x", 1);
-			delay(10);
+			delay(50);
 			
 			if(is_rf_sent()) {
 				nw_state &= ~DEV_ACTIVE;
