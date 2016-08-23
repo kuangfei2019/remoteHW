@@ -44,6 +44,7 @@ uint8_t ch, ccr, start;
 			rf_write_reg(0x05, rf_read_reg(0x05));
 			break;
 		}
+		putchar(0x00);
 	}	
 	
 	return rf_read_reg(0x05);

@@ -181,7 +181,7 @@ uint8_t val;
 
 	cnt %= 16;
 	val = rf_read_reg(0x08)>>4;	
-
+//	printf("%d\r\n", val);
 	if(val >= cnt) {
 		//写RF_CH清除PLOS_CNT
 		rf_write_reg(0x05, rf_read_reg(0x05));

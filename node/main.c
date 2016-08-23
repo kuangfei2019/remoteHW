@@ -6,6 +6,7 @@ int main( void ) {
 
 	bsp_init();	
 	led_off();
+
 //	printf("running\r\n");
 	while(!select_channel());
 	
