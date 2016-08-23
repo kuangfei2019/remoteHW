@@ -9,7 +9,7 @@ void bsp_init(void) {
 	asm("SIM");
 //	iwdg_init();
 	gpio_init();
-//	tim1_init(100);
+	tim1_init(500);
 	uart_init(9600);
 	rf_init();
 	

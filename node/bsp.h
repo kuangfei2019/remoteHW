@@ -12,6 +12,8 @@
 #define		HSE								8000000
 #define		LSI								128000
 
+#define		DEV_ID_LOC				0x4000
+
 #define		UART_BUF_SIZE			64
 
 #define		led_on()					{PD_ODR_ODR4=0;}

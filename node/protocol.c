@@ -1,20 +1,23 @@
 #include	"protocol.h"
 
-const char channel[16] = {05, 11, 14, 19, 26, 31, 37, 42,\
-													 51, 57, 63, 71, 78, 82, 87, 91};
+const char channel[16] = {85, 87, 90, 93, 96, 99, 102, 105,\
+													 107, 110, 113, 115, 117, 120, 123, 126};
+
+static uint8_t offline_cnt;
 
 uint8_t select_channel(void) {
-uint8_t i;
+uint8_t i=0;
 
-	for(i=0; i<16; i++) {
-		set_rf_channel(i);
-		delay(1000);
-		if(!is_uart_received()) {
+	while(1) {
+		set_rf_channel(channel[i]);
+		delay(500);
+		if(is_rf_received()) {
 			break;
 		}
+		i++;
 	}
 	
-	return i;
+	return (i>=16) ? 0 : channel[i]; 
 }
 
 uint8_t read_packet(uint8_t *buf, uint8_t max_len) {
@@ -60,4 +63,34 @@ uint8_t *pbuf;
 	len += remain;
 	
 	return len;
+}
+
+uint32_t get_uid(void) {
+	return *(uint32_t *)DEV_ID_LOC;
+}
+
+void set_uid(uint32_t id) {
+	if(!(FLASH_IAPSR & 0x80)) {
+		FLASH_DUKR = 0xAE;
+		FLASH_DUKR = 0x56;
+	}
+	*(uint32_t *)DEV_ID_LOC = id;
+	FLASH_DUKR = 0xDE;
+	FLASH_DUKR = 0xAD;
+}
+
+void update_offline_cnt(void) {
+	offline_cnt++;
+}
+
+void clr_offline_cnt(void) {
+	offline_cnt = 0;
+}
+
+uint8_t is_offline(uint8_t cnt) {
+	if(offline_cnt >= cnt) {
+		offline_cnt = 0;
+		return 1;
+	}
+	return 0;
 }

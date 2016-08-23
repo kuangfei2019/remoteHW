@@ -1,20 +1,46 @@
 #include	"protocol.h"
 
-const char channel[16] = {05, 11, 14, 19, 26, 31, 37, 42,\
-													 51, 57, 63, 71, 78, 82, 87, 91};
+const char channel[16] = {85, 87, 90, 93, 96, 99, 102, 105,\
+													 107, 110, 113, 115, 117, 120, 123, 126};
 
 uint8_t select_channel(void) {
-uint8_t i;
+uint32_t ticks;	
+uint8_t i, ccr, start;
 
+	ccr = 0;
+	start = get_uid()%sizeof(channel);
+	
 	for(i=0; i<16; i++) {
-		set_rf_channel(i);
-		delay(1000);
-		if(!is_uart_received()) {
+		iwdg_refresh();
+		set_rf_channel(channel[(start+i)%16]);
+		ticks = get_systick();
+		while(1) {
+			if(rf_read_reg(0x09) == 1) {
+				ccr = 1;
+				break;
+			}
+			if(get_systick()-ticks>1) {
+				ccr = 0;
+				break;
+			}
+		}
+		if(ccr == 0) {
 			break;
 		}
 	}
 	
-	return i;
+	while(1) {
+		led_on();
+		rf_write_payload("X", 1);
+		delay(50);
+		led_off();
+		delay(150);
+		if(is_rf_sent()) {
+			break;
+		}
+	}	
+	
+	return channel[i];
 }
 
 void send_packet(uint8_t *pbuf, uint8_t len) {
@@ -48,4 +74,37 @@ uint8_t buf[RF_BUF_SIZE];
 			break;
 		}
 	}	
+}
+
+uint32_t get_uid(void) {
+	return *(uint32_t *)DEV_ID_LOC;
+}
+
+void set_uid(uint32_t id) {
+	if(!(FLASH_IAPSR & 0x80)) {
+		FLASH_DUKR = 0xAE;
+		FLASH_DUKR = 0x56;
+	}
+	*(uint32_t *)DEV_ID_LOC = id;
+	FLASH_DUKR = 0xDE;
+	FLASH_DUKR = 0xAD;
+}
+
+void config_mode(void) {
+uint32_t ticks;
+
+	ticks = get_systick();
+	
+	while(1) {
+		if(is_uart_received()) {
+			if(memcmp("GETID\r\n", get_uart_buf(), get_uart_cnt()) == 0) {
+				printf("%c%lx", 'M', get_uid());
+				while(1);
+			}
+			
+			if(get_systick()-ticks > 10) {
+				return;
+			}
+		}
+	}
 }

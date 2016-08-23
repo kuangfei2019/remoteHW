@@ -1,7 +1,5 @@
 #include	"24l01.h"
 
-uint8_t uid[5]={0x2D, 0x1A, 0x00, 0x00, 0x01};
-
 static uint8_t rf_rx_buf[32];
 static uint8_t rf_rx_done;
 static uint8_t rf_rx_len;
@@ -76,6 +74,19 @@ void set_rf_channel(uint8_t ch) {
 	rf_ce_high();
 }
 
+void set_tx_addr(uint32_t addr) {
+uint8_t uid[5] = {0xC9};
+	memcpy(uid+1, &addr, 4);
+	
+	rf_write_bytes(CMD_WRITE_REG|0x10, uid, sizeof(uid));	//set tx address	
+}
+
+void set_rx_addr(uint32_t addr) {
+uint8_t uid[5] = {0xC9};
+	memcpy(uid+1, &addr, 4);	
+	rf_write_bytes(CMD_WRITE_REG|0x0A, uid, sizeof(uid));	//set rx address	
+}
+
 void rf_init(void) {
 	spi_init();
 	nss_high();	
@@ -87,8 +98,8 @@ void rf_init(void) {
 	rf_write_reg(0x05, 0x00);	//set rf channel 0
 	rf_write_reg(0x06, 0x23);	//250kbps 0dbm
 	
-	rf_write_bytes(CMD_WRITE_REG|0x0A, uid, sizeof(uid));	//set rx address
-	rf_write_bytes(CMD_WRITE_REG|0x10, uid, sizeof(uid));	//set tx address
+	set_tx_addr(get_uid());
+	set_rx_addr(get_uid());
 	rf_write_reg(0x11, 32);		//data pipe0 32 bytes
 	rf_write_reg(0x1c, 0x01);	//pipe 0 dynamic payload len
 	rf_write_reg(0x1d, 0x07);	//dynamic payload len
@@ -179,7 +190,7 @@ uint8_t status;
 
 	status = rf_read_reg(0x07);
 
-	if(status & 0x40) {		//rx_dr
+	if(status & 0x40) {		//rx_dr	
 		rf_rx_len = rf_read_payload((uint8_t *)rf_rx_buf);
 		rf_rx_done = 1;
 		rf_write_reg(0x07, 0x40);

@@ -25,7 +25,8 @@
 
 /*************** public function prototype ********/
 void rf_init(void) ;
-void rf_activite(void);
+void set_rx_addr(uint32_t addr);
+void set_tx_addr(uint32_t addr);
 uint8_t rf_read_reg(uint8_t addr);
 void rf_write_reg(uint8_t addr, uint8_t data);
 void rf_write_bytes(uint8_t addr, uint8_t *buf, uint8_t len) ;
@@ -42,6 +43,7 @@ void rf_isr(void) ;
 uint8_t is_rf_received(void) ;
 uint8_t is_rf_sent(void) ;
 uint8_t is_rf_mrt(void) ;
+uint8_t is_lost_of(uint8_t cnt);
 uint8_t *get_rf_buf(void) ;
 uint8_t get_rf_cnt(void);
 

@@ -9,11 +9,17 @@ static 		uint8_t 					nw_state;
 static 		uint8_t 					uart_tx_buf[32];
 
 int main( void ) {
-
+	
 	bsp_init();	
 	led_off();
+
+//	config_mode();
+	
 	//设置网络状态
 	nw_state = MASTER_ACTIVE;
+
+	//选择空闲的信道
+	select_channel();
 	
 	while(1) {
 
@@ -21,6 +27,7 @@ int main( void ) {
 		if(is_uart_received()) {
 			send_packet(get_uart_buf(), get_uart_cnt());
 			
+			//清除标志
 			is_rf_sent();
 			is_rf_received();
 			is_rf_mrt();
@@ -31,7 +38,7 @@ int main( void ) {
 			uint8_t len=0;
 			
 			led_on();
-			rf_write_payload("x", 1);
+			rf_write_payload("X", 1);
 			delay(50);
 			
 			if(is_rf_sent()) {
@@ -45,6 +52,10 @@ int main( void ) {
 			}
 			if(is_rf_mrt()) {
 				nw_state &= ~(NODE_ACTIVE|DEV_ACTIVE);
+				//如果丢包严重，则强制复位，重新选择信道
+				if(is_lost_of(10)) {
+					soft_reset();
+				}
 			}
 			
 			uart_tx_buf[0] = nw_state;
