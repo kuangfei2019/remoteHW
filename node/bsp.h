@@ -8,6 +8,7 @@
 #include	"24l01.h"
 #include	"protocol.h"
 
+
 #define		HSI								16000000
 #define		HSE								8000000
 #define		LSI								128000

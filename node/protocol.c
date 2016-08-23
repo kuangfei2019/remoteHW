@@ -9,7 +9,9 @@ uint8_t select_channel(void) {
 uint8_t i=0;
 
 	while(1) {
-		set_rf_channel(channel[i]);
+		iwdg_refresh();
+		set_rf_channel(channel[i%16]);
+//		printf("freq=%d\r\n", 2400+rf_read_reg(0x05));
 		delay(500);
 		if(is_rf_received()) {
 			break;

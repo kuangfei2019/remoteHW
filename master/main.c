@@ -12,7 +12,7 @@ int main( void ) {
 	
 	bsp_init();	
 	led_off();
-
+//	printf("running\r\n");
 //	config_mode();
 	
 	//设置网络状态
@@ -22,6 +22,8 @@ int main( void ) {
 	select_channel();
 	
 	while(1) {
+		
+		iwdg_refresh();
 
 		//如果串口接收到数据立即发送
 		if(is_uart_received()) {
@@ -44,6 +46,8 @@ int main( void ) {
 			if(is_rf_sent()) {
 				nw_state &= ~DEV_ACTIVE;
 				nw_state |= NODE_ACTIVE;
+				//发送成功则清除lost pack计数
+				rf_write_reg(0x05, rf_read_reg(0x05));
 			}
 			if(is_rf_received()) {
 				nw_state |= (NODE_ACTIVE|DEV_ACTIVE);

@@ -177,13 +177,16 @@ uint8_t is_rf_mrt(void) {
 }
 
 uint8_t is_lost_of(uint8_t cnt) {
+uint8_t val;
+
 	cnt %= 16;
-	
-	if((rf_read_reg(0x08)>>4) >= cnt) {
+	val = rf_read_reg(0x08)>>4;	
+
+	if(val >= cnt) {
 		//写RF_CH清除PLOS_CNT
 		rf_write_reg(0x05, rf_read_reg(0x05));
 		return 1;
-	} 
+	}
 	
 	return 0;
 }

@@ -5,14 +5,16 @@ const char channel[16] = {85, 87, 90, 93, 96, 99, 102, 105,\
 
 uint8_t select_channel(void) {
 uint32_t ticks;	
-uint8_t i, ccr, start;
+uint8_t ch, ccr, start;
 
 	ccr = 0;
+	ch = 0;
 	start = get_uid()%sizeof(channel);
 	
-	for(i=0; i<16; i++) {
+	while(1) {
 		iwdg_refresh();
-		set_rf_channel(channel[(start+i)%16]);
+		set_rf_channel(channel[(start+ch)%16]);
+//		printf("freq=%d\r\n", 2400+rf_read_reg(0x05));
 		ticks = get_systick();
 		while(1) {
 			if(rf_read_reg(0x09) == 1) {
@@ -27,20 +29,24 @@ uint8_t i, ccr, start;
 		if(ccr == 0) {
 			break;
 		}
+		
+		ch++;
 	}
 	
 	while(1) {
+		iwdg_refresh();
 		led_on();
 		rf_write_payload("X", 1);
 		delay(50);
 		led_off();
 		delay(150);
 		if(is_rf_sent()) {
+			rf_write_reg(0x05, rf_read_reg(0x05));
 			break;
 		}
 	}	
 	
-	return channel[i];
+	return rf_read_reg(0x05);
 }
 
 void send_packet(uint8_t *pbuf, uint8_t len) {

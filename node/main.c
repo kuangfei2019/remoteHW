@@ -6,13 +6,15 @@ int main( void ) {
 
 	bsp_init();	
 	led_off();
-	
+//	printf("running\r\n");
 	while(!select_channel());
 	
 	//清除离线计数，避免启动后再次复位
 	clr_offline_cnt();
 
 	while(1) {
+		
+		iwdg_refresh();
 		
 		//串口收到数据后存入2401 TX buf，等待主站下一次读取时发送
 		if(is_uart_received()) {
