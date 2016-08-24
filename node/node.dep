@@ -46,6 +46,7 @@
       <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
       <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
       <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
@@ -75,11 +76,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 27 9 7 1 6 5 39 3 20 38 23 11 10 0 4 2 19</file>
+          <file> 40 5 11 10 9 6 39 4 23 1 20 0 38 19 27 2 7 3</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 0 23 11 6 1 39 5 38 2 7 4 19 10 27 3 20 9</file>
+          <file> 0 23 11 6 1 39 5 38 2 7 4 19 10 27 3 20 40 9</file>
         </tool>
       </inputs>
     </file>
@@ -102,11 +103,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 10 39 4 5 11 0 1 20 9 6 38 19 27 23 2 7 3</file>
+          <file> 6 10 5 9 11 40 39 4 1 20 0 38 19 27 23 2 7 3</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 23 11 6 1 39 5 38 2 7 4 19 10 27 3 20 0 9</file>
+          <file> 23 11 6 1 39 5 38 2 7 4 19 10 27 3 20 40 0 9</file>
         </tool>
       </inputs>
     </file>
@@ -129,11 +130,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 5 0 11 10 38 2 27 1 20 9 6 7 39 23 4 19 3</file>
+          <file> 40 11 5 10 9 6 39 4 1 20 0 19 3 23 38 2 7 27</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 23 11 6 1 39 5 38 2 7 4 19 10 27 3 20 0 9</file>
+          <file> 23 11 6 1 39 5 38 2 7 4 19 10 27 3 20 40 0 9</file>
         </tool>
       </inputs>
     </file>
@@ -152,11 +153,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 11 0 5 23 10 39 1 20 9 6 38 19 27 4 2 7 3</file>
+          <file> 9 39 5 10 6 11 40 38 19 27 23 1 20 0 4 2 7 3</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 9 23 11 6 1 39 5 38 2 7 4 19 10 27 3 20 0</file>
+          <file> 9 23 11 6 1 39 5 38 2 7 4 19 10 27 3 20 40 0</file>
         </tool>
       </inputs>
     </file>

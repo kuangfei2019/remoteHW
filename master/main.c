@@ -13,7 +13,7 @@ int main( void ) {
 	bsp_init();	
 	led_off();
 //	printf("running\r\n");
-//	config_mode();
+	config_mode();
 	
 	//设置网络状态
 	nw_state = MASTER_ACTIVE;
@@ -62,7 +62,7 @@ int main( void ) {
 				}
 			}
 			
-			uart_tx_buf[0] = nw_state;
+			uart_tx_buf[0] = (~nw_state<<4)|(nw_state&0x0F);
 			for(uint8_t i=0; i<len+1; i++) {
 				putchar(uart_tx_buf[i]);
 			}

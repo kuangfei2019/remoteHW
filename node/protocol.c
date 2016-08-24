@@ -96,3 +96,44 @@ uint8_t is_offline(uint8_t cnt) {
 	}
 	return 0;
 }
+
+void config_mode(void) {
+uint32_t ticks;
+uint8_t loop=0;
+
+	ticks = get_systick();
+	
+	while(1) {
+	uint8_t cnt, *pbuf;
+		
+		iwdg_refresh();
+		if(is_uart_received()) {
+			pbuf = get_uart_buf();
+			cnt = get_uart_cnt();			
+			if(memcmp("RXADD\r\n", pbuf, cnt) == 0) {
+				loop = 1;
+				printf("RX|C|%08ld|\r\n", get_uid());
+			} else if(memcmp("WR|C|", pbuf, 5) == 0) {
+				uint32_t addr;
+				loop = 1;
+				addr = atol((const char *)(pbuf+5));
+				if(addr != 0) {
+					set_uid(addr);
+					printf("WR|C|%08ld|\r\n", get_uid());
+				} else {
+					printf("ERROR\r\n");
+				}
+			} else if(memcmp("RUN\r\n", pbuf, cnt) == 0) {
+				printf("RUN\r\n");
+				return;
+			} else {
+				printf("ERROR\r\n");
+			}
+		}
+		
+		if(!loop && (get_systick()-ticks>4)) {
+			return;
+		}		
+	}
+}
+

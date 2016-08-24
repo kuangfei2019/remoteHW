@@ -6,8 +6,10 @@ int main( void ) {
 
 	bsp_init();	
 	led_off();
-
+	
 //	printf("running\r\n");
+	config_mode();
+
 	while(!select_channel());
 	
 	//清除离线计数，避免启动后再次复位

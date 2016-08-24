@@ -8,7 +8,7 @@ static uint8_t uart_received;
 
 void bsp_init(void) {
 	asm("SIM");
-	iwdg_init();
+//	iwdg_init();
 	gpio_init();
 	tim1_init(500);
 	uart_init(9600);

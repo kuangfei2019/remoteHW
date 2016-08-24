@@ -5,6 +5,7 @@
 #include	<stdint.h>
 #include	<stdio.h>
 #include	<string.h>
+#include	<stdlib.h>
 #include	"24l01.h"
 #include	"protocol.h"
 

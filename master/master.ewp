@@ -66,11 +66,11 @@
         <option>
           <name>GenLibInFormatter</name>
           <version>0</version>
-          <state>6</state>
+          <state>5</state>
         </option>
         <option>
           <name>GenLibInFormatterDescription</name>
-          <state>No specifier n, no float, no scan set, no assignment suppressing, without multibytes.</state>
+          <state>No specifier n, no float, no scan set, no assignment suppressing.</state>
         </option>
         <option>
           <name>GenLibOutFormatter</name>
@@ -488,7 +488,7 @@
         </option>
         <option>
           <name>OOCOutputFile</name>
-          <state>remoteHW.srec</state>
+          <state>master.srec</state>
         </option>
         <option>
           <name>OOCCommandLineProducer</name>

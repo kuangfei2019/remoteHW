@@ -44,7 +44,7 @@ uint8_t ch, ccr, start;
 			rf_write_reg(0x05, rf_read_reg(0x05));
 			break;
 		}
-		putchar(0x00);
+		putchar(0xF0);
 	}	
 	
 	return rf_read_reg(0x05);
@@ -99,19 +99,41 @@ void set_uid(uint32_t id) {
 
 void config_mode(void) {
 uint32_t ticks;
+uint8_t loop=0;
 
 	ticks = get_systick();
 	
 	while(1) {
+	uint8_t cnt, *pbuf;
+		
+		iwdg_refresh();
 		if(is_uart_received()) {
-			if(memcmp("GETID\r\n", get_uart_buf(), get_uart_cnt()) == 0) {
-				printf("%c%lx", 'M', get_uid());
-				while(1);
-			}
-			
-			if(get_systick()-ticks > 10) {
+			loop = 1;
+			pbuf = get_uart_buf();
+			cnt = get_uart_cnt();			
+			if(memcmp("RXADD\r\n", pbuf, cnt) == 0) {
+				loop = 1;
+				printf("RX|Z|%08ld|\r\n", get_uid());
+			} else if(memcmp("WR|Z|", pbuf, 5) == 0) {
+				uint32_t addr;
+				loop = 1;
+				addr = atol((const char *)(pbuf+5));
+				if(addr != 0) {
+					set_uid(addr);
+					printf("WR|Z|%08ld|\r\n", get_uid());
+				} else {
+					printf("ERROR\r\n");
+				}
+			} else if(memcmp("RUN\r\n", pbuf, cnt) == 0) {
+				printf("RUN\r\n");
 				return;
+			} else {
+				printf("ERROR\r\n");
 			}
 		}
+		
+		if(!loop && (get_systick()-ticks>4)) {
+			return;
+		}		
 	}
 }

@@ -10,5 +10,6 @@ void set_uid(uint32_t id);
 void update_offline_cnt(void) ;
 void clr_offline_cnt(void);
 uint8_t is_offline(uint8_t cnt);
+void config_mode(void);
 
 #endif		//__PROTOCOL_H__
