@@ -2,28 +2,26 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>363345377</fileChecksum>
+  <fileChecksum>3753616084</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$PROJ_DIR$\..\node\bsp.h</file>
-      <file>$PROJ_DIR$\..\node\bsp.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\master.pbd</file>
       <file>$PROJ_DIR$\24l01.c</file>
       <file>$PROJ_DIR$\main.c</file>
       <file>$PROJ_DIR$\bsp.c</file>
       <file>$PROJ_DIR$\protocol.c</file>
-      <file>$PROJ_DIR$\protocol.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\protocol.o</file>
-      <file>$PROJ_DIR$\Debug\Exe\master.out</file>
-      <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\master.pbd</file>
-      <file>$PROJ_DIR$\Debug\Obj\protocol.pbi</file>
-      <file>$PROJ_DIR$\Debug\Exe\remoteHW.out</file>
-      <file>$TOOLKIT_DIR$\config\lnkstm8s003f3.icf</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\List\master.map</file>
+      <file>$PROJ_DIR$\Debug\Obj\24l01.__cstat.et</file>
+      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
+      <file>$TOOLKIT_DIR$\inc\iostm8s003f3.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\protocol.__cstat.et</file>
+      <file>$TOOLKIT_DIR$\inc\c\string.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\master.hex</file>
       <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
       <file>$PROJ_DIR$\bsp.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
       <file>$TOOLKIT_DIR$\inc\c\stdio.h</file>
       <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
       <file>$PROJ_DIR$\Debug\Obj\bsp.__cstat.et</file>
@@ -42,25 +40,22 @@
       <file>$PROJ_DIR$\Debug\Obj\bsp.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\bsp.o</file>
       <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
-      <file>$PROJ_DIR$\Debug\List\master.map</file>
+      <file>$PROJ_DIR$\protocol.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
+      <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\protocol.o</file>
+      <file>$PROJ_DIR$\Debug\Exe\master.out</file>
+      <file>$PROJ_DIR$\Debug\Obj\protocol.pbi</file>
+      <file>$PROJ_DIR$\Debug\Exe\remoteHW.out</file>
+      <file>$TOOLKIT_DIR$\config\lnkstm8s003f3.icf</file>
       <file>$TOOLKIT_DIR$\config\math_small.xcl</file>
-      <file>$PROJ_DIR$\Debug\Obj\24l01.__cstat.et</file>
-      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\string.h</file>
-      <file>$TOOLKIT_DIR$\inc\iostm8s003f3.h</file>
-      <file>$PROJ_DIR$\..\node\protocol.h</file>
-      <file>$PROJ_DIR$\..\node\protocol.c</file>
-      <file>$PROJ_DIR$\..\node\main.c</file>
-      <file>$PROJ_DIR$\..\node\24l01.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\protocol.__cstat.et</file>
-      <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>ILINK</name>
-          <file> 8 36</file>
+          <file> 38 5</file>
         </tool>
       </outputs>
     </file>
@@ -69,25 +64,25 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 32</file>
-        </tool>
-        <tool>
-          <name>ICCSTM8</name>
           <file> 30</file>
         </tool>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 28</file>
+        </tool>
+        <tool>
           <name>__cstat</name>
-          <file> 38</file>
+          <file> 6</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 41 22 26 47 39 18 31 19 29 25 17 35 40 6 28 24 23 27</file>
+          <file> 8 20 24 11 7 16 29 17 27 23 14 33 10 34 26 22 21 25</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 31 17 41 39 35 22 26 19 24 23 28 29 18 25 27 40 47 6</file>
+          <file> 29 14 8 7 33 20 24 17 22 21 26 27 16 23 25 10 11 34</file>
         </tool>
       </inputs>
     </file>
@@ -96,11 +91,11 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 16</file>
+          <file> 13</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 10</file>
+          <file> 35</file>
         </tool>
         <tool>
           <name>__cstat</name>
@@ -110,11 +105,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 17 35 26 25 6 22 40 23 27 41 18 47 31 39 28 24 19 29</file>
+          <file> 14 33 24 23 34 20 10 21 25 8 16 11 29 7 26 22 17 27</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 17 41 39 35 22 26 19 24 23 28 29 18 25 27 40 47 6 31</file>
+          <file> 14 8 7 33 20 24 17 22 21 26 27 16 23 25 10 11 34 29</file>
         </tool>
       </inputs>
     </file>
@@ -123,25 +118,25 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 33</file>
+          <file> 31</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 34</file>
+          <file> 32</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 20</file>
+          <file> 18</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 24 47 17 41 19 25 18 31 39 26 35 40 6 23 22 28 29 27</file>
+          <file> 22 11 14 8 17 23 16 29 7 24 33 10 34 21 20 26 27 25</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 17 41 39 35 22 26 19 24 23 28 29 18 25 27 40 47 6 31</file>
+          <file> 14 8 7 33 20 24 17 22 21 26 27 16 23 25 10 11 34 29</file>
         </tool>
       </inputs>
     </file>
@@ -150,25 +145,25 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 12</file>
+          <file> 39</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 7</file>
+          <file> 37</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 46</file>
+          <file> 9</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 17 26 47 41 18 31 39 22 28 35 40 6 19 29 25 24 23 27</file>
+          <file> 14 24 11 8 16 29 7 20 26 33 10 34 17 27 23 22 21 25</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 6 17 41 39 35 22 26 19 24 23 28 29 18 25 27 40 47 31</file>
+          <file> 34 14 8 7 33 20 24 17 22 21 26 27 16 23 25 10 11 29</file>
         </tool>
       </inputs>
     </file>
@@ -177,13 +172,17 @@
       <outputs>
         <tool>
           <name>ILINK</name>
-          <file> 36</file>
+          <file> 5</file>
+        </tool>
+        <tool>
+          <name>OBJCOPY</name>
+          <file> 12</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ILINK</name>
-          <file> 37 14 30 34 10 7 21 9</file>
+          <file> 42 41 28 32 35 37 19 36</file>
         </tool>
       </inputs>
     </file>
@@ -192,7 +191,7 @@
       <inputs>
         <tool>
           <name>ILINK</name>
-          <file> 37 14 30 34 10 21 9</file>
+          <file> 42 41 28 32 35 19 36</file>
         </tool>
       </inputs>
     </file>
