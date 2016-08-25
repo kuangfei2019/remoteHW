@@ -41,6 +41,7 @@ uint8_t *pbuf;
 	} else if(pbuf[0] == 0x21) {
 		memcpy(buf, pbuf+1, len);
 		
+		//等待接收下半段数据 持续50ms
 		for(uint8_t i=0; i<25; i++) {
 			delay(2);
 			
@@ -48,17 +49,17 @@ uint8_t *pbuf;
 				remain = get_rf_cnt();
 				pbuf = get_rf_buf();
 				
+				//取出附加的帧标识
 				if(remain >= 1) {
 					remain -= 1;
 				} else {
-					return 0;
+					break;
 				}
 				if(pbuf[0] == 0x22) {
 					memcpy(buf+len, pbuf+1, remain);
+					break;
 				}
-			} else {
-				return 0;
-			}			
+			}		
 		}
 	}
 	

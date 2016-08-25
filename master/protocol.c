@@ -108,7 +108,6 @@ uint8_t loop=0;
 		
 		iwdg_refresh();
 		if(is_uart_received()) {
-			loop = 1;
 			pbuf = get_uart_buf();
 			cnt = get_uart_cnt();			
 			if(memcmp("RXADD\r\n", pbuf, cnt) == 0) {
