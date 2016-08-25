@@ -194,7 +194,7 @@ uint8_t status;
 		rf_rx_len = rf_read_payload((uint8_t *)rf_rx_buf);
 		rf_rx_done = 1;
 		rf_write_reg(0x07, 0x40);
-		rf_flush_rx();	
+		rf_flush_rx();
 	}
 	
 	if(status & 0x20) {		//tx_ds

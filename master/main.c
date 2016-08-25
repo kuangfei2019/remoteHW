@@ -28,11 +28,6 @@ int main( void ) {
 		//如果串口接收到数据立即发送
 		if(is_uart_received()) {
 			send_packet(get_uart_buf(), get_uart_cnt());
-			
-			//清除标志
-			is_rf_sent();
-			is_rf_received();
-			is_rf_mrt();
 		}
 		
 		//定时发送查询指令，读取节点数据，更新网络状态，返回数据至PC
@@ -52,7 +47,7 @@ int main( void ) {
 			if(is_rf_received()) {
 				nw_state |= (NODE_ACTIVE|DEV_ACTIVE);
 				len = get_rf_cnt();
-				memcpy(uart_tx_buf+1, get_rf_buf(), len);
+				memcpy(uart_tx_buf+1, get_rf_buf(), len);						
 			}
 			if(is_rf_mrt()) {
 				nw_state &= ~(NODE_ACTIVE|DEV_ACTIVE);

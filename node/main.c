@@ -25,7 +25,7 @@ int main( void ) {
 		}
 		
 		if(is_rf_sent()) {
-
+			
 		}
 		
 		//将2401接收到的数据通过串口发送
