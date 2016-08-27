@@ -23,10 +23,10 @@ uint8_t i=0;
 }
 
 uint8_t read_packet(uint8_t *buf, uint8_t max_len) {
-uint8_t remain=0;
-uint8_t len=0;
+uint8_t i, len, remain;
 uint8_t *pbuf;
 
+	remain = 0;
 	len = get_rf_cnt();
 	pbuf = get_rf_buf();
 	
@@ -40,27 +40,28 @@ uint8_t *pbuf;
 		memcpy(buf, pbuf+1, len);
 	} else if(pbuf[0] == 0x21) {
 		memcpy(buf, pbuf+1, len);
-		
 		//等待接收下半段数据 持续50ms
-		for(uint8_t i=0; i<25; i++) {
-			delay(2);
+		for(i=0; i<50; i++) {
+			delay(1);
 			
 			if(is_rf_received()) {
 				remain = get_rf_cnt();
 				pbuf = get_rf_buf();
 				
 				//取出附加的帧标识
-				if(remain >= 1) {
-					remain -= 1;
-				} else {
-					break;
-				}
 				if(pbuf[0] == 0x22) {
+					remain -= 1;
 					memcpy(buf+len, pbuf+1, remain);
 					break;
 				}
 			}		
 		}
+		if(i>=50) {
+			puts("receive multiple frame error.\r\n");
+			return 0;
+		}
+	} else {
+		return 0;
 	}
 	
 	len += remain;

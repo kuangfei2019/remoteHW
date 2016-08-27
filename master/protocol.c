@@ -75,6 +75,7 @@ uint8_t buf[RF_BUF_SIZE];
 		rf_write_payload(buf, len+1);
 	}
 	
+	//等待发送完成
 	for(uint8_t i=0; i<20; i++) {
 		delay(2);
 		if(is_rf_sent()) {
