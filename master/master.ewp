@@ -75,11 +75,11 @@
         <option>
           <name>GenLibOutFormatter</name>
           <version>0</version>
-          <state>5</state>
+          <state>0</state>
         </option>
         <option>
           <name>GenLibOutFormatterDescription</name>
-          <state>No specifier a or A, no specifier n, no float.</state>
+          <state>Automatic choice of formatter.</state>
         </option>
         <option>
           <name>GenStackSize</name>

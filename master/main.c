@@ -9,7 +9,6 @@ static 		uint8_t 					nw_state;
 static 		uint8_t 					uart_tx_buf[32];
 
 int main( void ) {
-	
 	bsp_init();	
 	led_off();
 //	printf("running\r\n");

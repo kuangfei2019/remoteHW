@@ -34,7 +34,7 @@ int main( void ) {
 
 			led_on();
 			len = read_packet(uart_tx_buf, sizeof(uart_tx_buf));
-			printf("len=%d\t", len);
+//			printf("len=%d\t", len);
 			for(uint8_t i=0; i<len; i++) {
 				putchar(uart_tx_buf[i]);
 			}

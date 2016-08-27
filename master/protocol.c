@@ -85,15 +85,25 @@ uint8_t buf[RF_BUF_SIZE];
 }
 
 uint32_t get_uid(void) {
-	return *(uint32_t *)DEV_ID_LOC;
+	return (uint32_t)(atol((const char *)(DEV_ID_LOC+6)));
 }
 
-void set_uid(uint32_t id) {
+uint8_t *get_uid_char(void) {
+	return (uint8_t *)DEV_ID_LOC;
+}
+
+void set_uid(uint8_t *id, uint8_t len) {
+uint8_t *p = (uint8_t *)DEV_ID_LOC;
+
 	if(!(FLASH_IAPSR & 0x80)) {
 		FLASH_DUKR = 0xAE;
 		FLASH_DUKR = 0x56;
 	}
-	*(uint32_t *)DEV_ID_LOC = id;
+	
+	while(len--) {
+		*p++ = *id++;
+	}
+
 	FLASH_DUKR = 0xDE;
 	FLASH_DUKR = 0xAD;
 }
@@ -110,20 +120,15 @@ uint8_t loop=0;
 		iwdg_refresh();
 		if(is_uart_received()) {
 			pbuf = get_uart_buf();
-			cnt = get_uart_cnt();			
-			if(memcmp("RXADD\r\n", pbuf, cnt) == 0) {
+			cnt = get_uart_cnt();		
+			if(memcmp("XZ201\r\n", pbuf, cnt) == 0) {
 				loop = 1;
-				printf("RX|Z|%08ld|\r\n", get_uid());
+				printf("REVOK");
+			} else if(memcmp("RXADD\r\n", pbuf, cnt) == 0) {
+				printf("RX|Z|%10s|\r\n", get_uid_char());
 			} else if(memcmp("WR|Z|", pbuf, 5) == 0) {
-				uint32_t addr;
-				loop = 1;
-				addr = atol((const char *)(pbuf+5));
-				if(addr != 0) {
-					set_uid(addr);
-					printf("WR|Z|%08ld|\r\n", get_uid());
-				} else {
-					printf("ERROR\r\n");
-				}
+				set_uid(pbuf+5, 10);
+				printf("WR|Z|%10s|\r\n", get_uid_char());
 			} else if(memcmp("RUN\r\n", pbuf, cnt) == 0) {
 				printf("RUN\r\n");
 				return;
@@ -132,7 +137,7 @@ uint8_t loop=0;
 			}
 		}
 		
-		if(!loop && (get_systick()-ticks>4)) {
+		if(!loop && (get_systick()-ticks>2)) {
 			return;
 		}		
 	}
