@@ -11,7 +11,7 @@ static 		uint8_t 					uart_tx_buf[32];
 int main( void ) {
 	bsp_init();	
 	led_off();
-//	printf("running\r\n");
+
 	config_mode();
 	
 	//设置网络状态

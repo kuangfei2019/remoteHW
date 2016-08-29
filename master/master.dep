@@ -6,110 +6,83 @@
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
-      <file>$PROJ_DIR$\protocol.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\protocol.o</file>
-      <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
-      <file>$PROJ_DIR$\Debug\Exe\master.out</file>
-      <file>$PROJ_DIR$\Debug\Obj\protocol.pbi</file>
-      <file>$PROJ_DIR$\Debug\Exe\remoteHW.out</file>
-      <file>$TOOLKIT_DIR$\config\lnkstm8s003f3.icf</file>
-      <file>$TOOLKIT_DIR$\config\math_small.xcl</file>
       <file>$PROJ_DIR$\24l01.c</file>
       <file>$PROJ_DIR$\main.c</file>
       <file>$PROJ_DIR$\bsp.c</file>
       <file>$PROJ_DIR$\protocol.c</file>
-      <file>$PROJ_DIR$\Debug\List\master.map</file>
-      <file>$PROJ_DIR$\Debug\Obj\24l01.__cstat.et</file>
-      <file>$TOOLKIT_DIR$\inc\iostm8s003f3.h</file>
+      <file>$TOOLKIT_DIR$\config\math_small.xcl</file>
+      <file>$PROJ_DIR$\Debug\Exe\remoteHW.out</file>
+      <file>$PROJ_DIR$\Debug\Obj\protocol.pbi</file>
       <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
+      <file>$TOOLKIT_DIR$\inc\iostm8s003f3.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\master.out</file>
+      <file>$PROJ_DIR$\Debug\Obj\master.pbd</file>
+      <file>$PROJ_DIR$\Debug\List\master.map</file>
       <file>$PROJ_DIR$\Debug\Obj\protocol.__cstat.et</file>
-      <file>$TOOLKIT_DIR$\inc\c\string.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\24l01.__cstat.et</file>
       <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\string.h</file>
       <file>$PROJ_DIR$\bsp.h</file>
-      <file>$PROJ_DIR$\Debug\Exe\master.hex</file>
-      <file>$PROJ_DIR$\Debug\Obj\bsp.__cstat.et</file>
       <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
       <file>$TOOLKIT_DIR$\inc\c\stdio.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\master.hex</file>
       <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
-      <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\bsp.__cstat.et</file>
       <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+      <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
       <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
       <file>$TOOLKIT_DIR$\lib\dlstm8smn.h</file>
       <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
       <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
       <file>$TOOLKIT_DIR$\inc\c\ystdio.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\24l01.o</file>
-      <file>$PROJ_DIR$\24l01.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\24l01.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\bsp.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\bsp.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\bsp.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\24l01.pbi</file>
+      <file>$PROJ_DIR$\24l01.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\24l01.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
       <file>$PROJ_DIR$\Debug\Obj\main.o</file>
+      <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
+      <file>$PROJ_DIR$\protocol.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\protocol.o</file>
+      <file>$TOOLKIT_DIR$\config\lnkstm8s003f3.icf</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>ILINK</name>
-          <file> 4 13</file>
+          <file> 9 11</file>
         </tool>
       </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Debug\Exe\master.out</name>
-      <outputs>
-        <tool>
-          <name>ILINK</name>
-          <file> 13</file>
-        </tool>
-        <tool>
-          <name>OBJCOPY</name>
-          <file> 22</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ILINK</name>
-          <file> 8 7 36 40 41 2 27 0</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Debug\Exe\remoteHW.out</name>
-      <inputs>
-        <tool>
-          <name>ILINK</name>
-          <file> 8 7 36 40 41 27 0</file>
-        </tool>
-      </inputs>
     </file>
     <file>
       <name>$PROJ_DIR$\24l01.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 38</file>
+          <file> 32</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 36</file>
+          <file> 34</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 14</file>
+          <file> 13</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 15 31 19 16 24 35 32 25 37 28 21 3 18 1 34 30 29 33</file>
+          <file> 8 27 15 7 18 35 28 19 33 23 17 42 16 39 36 26 25 29</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 37 21 15 16 3 28 32 24 30 29 34 35 25 31 33 18 19 1</file>
+          <file> 33 17 8 7 42 23 28 18 26 25 36 35 19 27 29 16 15 39</file>
         </tool>
       </inputs>
     </file>
@@ -118,25 +91,25 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 20</file>
+          <file> 14</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 41</file>
+          <file> 37</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 26</file>
+          <file> 21</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 21 3 28 33 1 29 31 18 32 15 25 19 37 16 34 30 24 35</file>
+          <file> 17 42 23 29 39 25 27 16 28 8 19 15 33 7 36 26 18 35</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 21 15 16 3 28 32 24 30 29 34 35 25 31 33 18 19 1 37</file>
+          <file> 17 8 7 42 23 28 18 26 25 36 35 19 27 29 16 15 39 33</file>
         </tool>
       </inputs>
     </file>
@@ -145,25 +118,25 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 39</file>
+          <file> 31</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 40</file>
+          <file> 30</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 23</file>
+          <file> 22</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 30 19 21 15 24 31 25 37 16 32 3 18 1 29 28 34 35 33</file>
+          <file> 26 15 17 8 18 27 19 33 7 28 42 16 39 25 23 36 35 29</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 21 15 16 3 28 32 24 30 29 34 35 25 31 33 18 19 1 37</file>
+          <file> 17 8 7 42 23 28 18 26 25 36 35 19 27 29 16 15 39 33</file>
         </tool>
       </inputs>
     </file>
@@ -172,25 +145,53 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 5</file>
+          <file> 6</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 2</file>
+          <file> 40</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 17</file>
+          <file> 12</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 32 18 3 1 28 34 21 15 25 19 37 16 24 35 31 30 29 33</file>
+          <file> 28 16 42 39 23 36 17 8 19 15 33 7 18 35 27 26 25 29</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 1 21 15 16 3 28 32 24 30 29 34 35 25 31 33 18 19 37</file>
+          <file> 39 17 8 7 42 23 28 18 26 25 36 35 19 27 29 16 15 33</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\remoteHW.out</name>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 4 41 34 30 37 24 38</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\master.out</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>OBJCOPY</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 4 41 34 30 37 40 24 38</file>
         </tool>
       </inputs>
     </file>

@@ -14,7 +14,6 @@ uint8_t ch, ccr, start;
 	while(1) {
 		iwdg_refresh();
 		set_rf_channel(channel[(start+ch)%16]);
-//		printf("freq=%d\r\n", 2400+rf_read_reg(0x05));
 		ticks = get_systick();
 		while(1) {
 			if(rf_read_reg(0x09) == 1) {

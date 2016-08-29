@@ -11,7 +11,6 @@ uint8_t i=0;
 	while(1) {
 		iwdg_refresh();
 		set_rf_channel(channel[i%16]);
-//		printf("freq=%d\r\n", 2400+rf_read_reg(0x05));
 		delay(500);
 		if(is_rf_received()) {
 			break;
@@ -57,7 +56,6 @@ uint8_t *pbuf;
 			}		
 		}
 		if(i>=50) {
-			puts("receive multiple frame error.\r\n");
 			return 0;
 		}
 	} else {
