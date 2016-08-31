@@ -21,52 +21,6 @@ uint8_t i=0;
 	return (i>=16) ? 0 : channel[i]; 
 }
 
-uint8_t read_packet(uint8_t *buf, uint8_t max_len) {
-uint8_t i, len, remain;
-uint8_t *pbuf;
-
-	remain = 0;
-	len = get_rf_cnt();
-	pbuf = get_rf_buf();
-	
-	if(len <= 1) {
-		return 0;
-	}
-	
-	len -= 1;
-	
-	if(pbuf[0] == 0x11) {
-		memcpy(buf, pbuf+1, len);
-	} else if(pbuf[0] == 0x21) {
-		memcpy(buf, pbuf+1, len);
-		//等待接收下半段数据 持续50ms
-		for(i=0; i<50; i++) {
-			delay(1);
-			
-			if(is_rf_received()) {
-				remain = get_rf_cnt();
-				pbuf = get_rf_buf();
-				
-				//取出附加的帧标识
-				if(pbuf[0] == 0x22) {
-					remain -= 1;
-					memcpy(buf+len, pbuf+1, remain);
-					break;
-				}
-			}		
-		}
-		if(i>=50) {
-			return 0;
-		}
-	} else {
-		return 0;
-	}
-	
-	len += remain;
-	
-	return len;
-}
-
 uint32_t get_uid(void) {
 	return (uint32_t)(atol((const char *)(DEV_ID_LOC+6)));
 }

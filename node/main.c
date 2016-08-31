@@ -32,7 +32,9 @@ int main( void ) {
 		uint8_t len;
 
 			led_on();
-			len = read_packet(uart_tx_buf, sizeof(uart_tx_buf));
+			len = get_rf_cnt();
+			memcpy(uart_tx_buf, get_rf_buf(), len);
+			
 			for(uint8_t i=0; i<len; i++) {
 				putchar(uart_tx_buf[i]);
 			}

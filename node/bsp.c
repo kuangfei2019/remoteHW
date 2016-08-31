@@ -107,7 +107,7 @@ void uart_isr(void) {
 	if(UART1_SR_RXNE) {
 		uart_buf[uart_rcv_cnt++] = UART1_DR;
 		uart_rcv_cnt %= UART_BUF_SIZE;
-		tim2_init(10);
+		tim2_init(5);
 	}
 }
 

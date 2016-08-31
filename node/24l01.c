@@ -1,6 +1,6 @@
 #include	"24l01.h"
 
-static uint8_t rf_rx_buf[32];
+static uint8_t rf_rx_buf[64];
 static uint8_t rf_rx_done;
 static uint8_t rf_rx_len;
 static uint8_t rf_tx_done;
@@ -96,7 +96,7 @@ void rf_init(void) {
 	rf_write_reg(0x03, 0x03);	//5 bytes address
 	rf_write_reg(0x04, 0x5A);	//10 times retransmit, wait 1500us
 	rf_write_reg(0x05, 0x00);	//set rf channel 0
-	rf_write_reg(0x06, 0x23);	//250kbps 0dbm
+	rf_write_reg(0x06, 0x26);	//250kbps 0dbm
 	
 	set_tx_addr(get_uid());
 	set_rx_addr(get_uid());
@@ -135,16 +135,20 @@ uint8_t len=0, i;
 }
 
 void rf_ack_payload(uint8_t *buf, uint8_t len) {
+	asm("SIM");
 	rf_ce_low();
 	rf_write_bytes(CMD_ACK_PAYLOAD, buf, len);
 	rf_ce_high();
+	asm("RIM");
 }
 
 void rf_write_payload(uint8_t *buf, uint8_t len) {
+	asm("SIM");
 	rf_ce_low();
 	rf_write_bytes(CMD_TX_PAYLOAD, buf, len);
 	rf_write_reg(0x00, 0x0E);
 	rf_ce_high();
+	asm("RIM");
 }
 
 uint8_t is_rf_received(void) {
@@ -191,8 +195,33 @@ uint8_t status;
 	status = rf_read_reg(0x07);
 
 	if(status & 0x40) {		//rx_dr	
-		rf_rx_len = rf_read_payload((uint8_t *)rf_rx_buf);
-		rf_rx_done = 1;
+	uint8_t len, buf[32];
+		len = rf_read_payload(buf);
+		
+		switch(buf[0]) {
+		case 'X':
+			rf_rx_len = 0;
+			rf_rx_done = 1;
+			break;
+		case 0x11:
+			memcpy(rf_rx_buf, buf+1, len-1);
+			rf_rx_len = len-1;
+			rf_rx_done = 1;						
+			break;
+		case 0x21:
+			memcpy(rf_rx_buf, buf+1, len-1);
+			rf_rx_len = len-1;
+			rf_rx_done = 0;			
+			break;
+		case 0x22:
+			memcpy(rf_rx_buf+rf_rx_len, buf+1, len-1);
+			rf_rx_len += (len-1);
+			rf_rx_done = 1;				
+			break;
+		default:
+			break;
+		}
+
 		rf_write_reg(0x07, 0x40);
 		rf_flush_rx();
 	}
