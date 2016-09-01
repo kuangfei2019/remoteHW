@@ -49,40 +49,6 @@ uint8_t ch, ccr, start;
 	return rf_read_reg(0x05);
 }
 
-void send_packet(uint8_t *pbuf, uint8_t len) {
-uint8_t buf[RF_BUF_SIZE];
-	
-	if(len < RF_BUF_SIZE) {
-		buf[0] = 0x11;
-		memcpy(buf+1, pbuf, len);
-		rf_write_payload(buf, len+1);
-	} else {
-		buf[0] = 0x21;
-		memcpy(buf+1, pbuf, RF_BUF_SIZE-1);
-		rf_write_payload(buf, RF_BUF_SIZE);
-		
-		for(uint8_t i=0; i<20; i++) {
-			delay(2);
-			if(is_rf_sent()) {
-				break;
-			}
-		}
-		
-		len -= (RF_BUF_SIZE-1);
-		buf[0] = 0x22;
-		memcpy(buf+1, pbuf+RF_BUF_SIZE-1, len);
-		rf_write_payload(buf, len+1);
-	}
-	
-	//等待发送完成
-	for(uint8_t i=0; i<20; i++) {
-		delay(2);
-		if(is_rf_sent()) {
-			break;
-		}
-	}	
-}
-
 uint32_t get_uid(void) {
 	return (uint32_t)(atol((const char *)(DEV_ID_LOC+6)));
 }
