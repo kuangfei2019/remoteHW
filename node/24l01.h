@@ -40,6 +40,7 @@ uint8_t rf_read_rxlen(void);
 uint8_t rf_read_payload(uint8_t *buf);
 void rf_write_payload(uint8_t *buf, uint8_t len);
 void rf_isr(void) ;
+void clr_rf_buf(void);
 uint8_t is_rf_received(void) ;
 uint8_t is_rf_sent(void) ;
 uint8_t is_rf_mrt(void) ;

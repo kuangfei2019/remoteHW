@@ -141,14 +141,14 @@ void rf_ack_payload(uint8_t *buf, uint8_t len) {
 }
 
 void rf_write_payload(uint8_t *buf, uint8_t len) {
-	asm("SIM");
+	PB_CR2_C25 = 0;
 	if((len>0) && (len<=32)) {
 		rf_ce_low();
 		rf_write_bytes(CMD_TX_PAYLOAD, buf, len);
 		rf_write_reg(0x00, 0x0E);
 		rf_ce_high();	
 	}
-	asm("RIM");
+	PB_CR2_C25 = 1;
 }
 
 uint8_t is_rf_received(void) {

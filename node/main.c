@@ -34,7 +34,8 @@ int main( void ) {
 			led_on();
 			len = get_rf_cnt();
 			memcpy(uart_tx_buf, get_rf_buf(), len);
-			
+			clr_rf_buf();
+
 			for(uint8_t i=0; i<len; i++) {
 				putchar(uart_tx_buf[i]);
 			}

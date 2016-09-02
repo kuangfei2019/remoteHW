@@ -135,20 +135,20 @@ uint8_t len=0, i;
 }
 
 void rf_ack_payload(uint8_t *buf, uint8_t len) {
-	asm("SIM");
+	PB_CR2_C25 = 0;
 	rf_ce_low();
 	rf_write_bytes(CMD_ACK_PAYLOAD, buf, len);
 	rf_ce_high();
-	asm("RIM");
+	PB_CR2_C25 = 1;
 }
 
 void rf_write_payload(uint8_t *buf, uint8_t len) {
-	asm("SIM");
+	PB_CR2_C25 = 0;
 	rf_ce_low();
 	rf_write_bytes(CMD_TX_PAYLOAD, buf, len);
 	rf_write_reg(0x00, 0x0E);
 	rf_ce_high();
-	asm("RIM");
+	PB_CR2_C25 = 1;
 }
 
 uint8_t is_rf_received(void) {
@@ -175,6 +175,12 @@ uint8_t is_rf_mrt(void) {
 		return 1;
 	} else {
 		return 0;
+	}
+}
+
+void clr_rf_buf(void) {
+	for(uint8_t i=0; i<64; i++) {
+		rf_rx_buf[i] = 0;
 	}
 }
 

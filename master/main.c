@@ -26,8 +26,7 @@ int main( void ) {
 		iwdg_refresh();
 
 		//如果串口接收到数据立即发送
-		if(is_uart_received()) {
-			
+		if(is_uart_received()) {			
 			uint8_t len, remain, *pbuf;
 			uint8_t buf[64];
 			

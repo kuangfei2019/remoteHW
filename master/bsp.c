@@ -36,6 +36,7 @@ void gpio_init(void) {
 	PB_CR1_C15 = 1;
 	PB_CR2_C25 = 1;			//RF_IRQ	
 	EXTI_CR1_PBIS = 0;
+	ITC_SPR2 &= ~0x03;
 }
 
 uint32_t get_sysclk(void) {
