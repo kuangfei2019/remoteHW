@@ -12,10 +12,10 @@ uint8_t ch, ccr, start;
 	start = get_uid()%sizeof(channel);
 	
 	while(1) {
-		iwdg_refresh();
 		set_rf_channel(channel[(start+ch)%16]);
 		ticks = get_systick();
 		while(1) {
+			iwdg_refresh();
 			if(rf_read_reg(0x09) == 1) {
 				ccr = 1;
 				break;
